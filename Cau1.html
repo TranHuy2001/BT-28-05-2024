@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="number" id="number" placeholder="Nhập số"/>
+<button onclick="addNumber()">Thêm vào mảng</button>
+<h3 id="arrElements"> Mảng: </h3>
+<h3 id="result"> Kết quả: </h3>
+
+</body>
+<script>
+    var numbers = [];
+
+    function addNumber() {
+        let numInput = document.getElementById('number');
+        let num = Number(numInput.value);
+        numInput.value = '';
+
+        if(numbers.length < 20) {
+            numbers.push(num);
+            document.getElementById('arrElements').textContent = "Mảng: " + numbers.join(', ');
+
+            let evenSum = sum(numbers.filter(n => n % 2 == 0));
+            let oddSum = sum(numbers.filter(n => n % 2 != 0));
+            document.getElementById('result').textContent = "Kết quả: " + (evenSum - oddSum);
+        } else {
+            alert("Mảng đã đạt tối đa 20 phần tử");
+        }
+    }
+
+    function sum(numbers) {
+        return numbers.reduce((a, b) => a + b, 0);
+    }
+</script>
+<style>
+    body{
+        font-family: Arial,sans-serif;
+    }
+    h3{
+        margin-top: 20px;
+    }
+</style>
+</html>

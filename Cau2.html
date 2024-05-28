@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="inputString" placeholder="Nhập chuỗi ký tự">
+<button onclick="countUppercase()">Đếm ký tự in hoa</button>
+<h3 id="result"></h3>
+</body>
+<script>
+    function countUppercase() {
+        const input = document.getElementById('inputString').value;
+        let count = 0;
+
+        for (let i = 0; i < input.length; i++) {
+            let char = input[i];
+            if (char === char.toUpperCase() && char !== char.toLowerCase()) {
+                count++;
+            }
+        }
+
+        let result = "";
+        if (count === 0) {
+            result = "The Strings is not contain upper char";
+        } else {
+            result = "Số lượng ký tự in hoa: " + count;
+        }
+
+        document.getElementById('result').textContent = result;
+    }
+</script>
+</html>

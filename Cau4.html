@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="idInput" placeholder="Mã điện thoại">
+<input type="text" id="nameInput" placeholder="Tên điện thoại">
+<input type="text" id="brandInput" placeholder="Hãng điện thoại">
+<input type="text" id="priceInput" placeholder="Giá điện thoại">
+<button onclick="addPhone()">Thêm mới</button>
+
+<div id="phones"></div>
+</body>
+
+<script>
+    class Phone {
+        constructor(id, name, brand, price) {
+            this.id = id;
+            this.name = name;
+            this.brand = brand;
+            this.price = price;
+        }
+
+        getId() {
+            return this.id;
+        }
+        getName() {
+            return this.name;
+        }
+
+        getBrand() {
+            return this.brand;
+        }
+
+        getPrice() {
+            return this.price;
+        }
+
+        setId(id) {
+            this.id = id;
+        }
+        setName(name) {
+            this.name = name;
+        }
+
+        setBrand(brand) {
+            this.brand = brand;
+        }
+
+        setPrice(price) {
+            this.price = price;
+        }
+
+        toString() {
+            return `Mã: ${this.id}, Tên: ${this.name}, Hãng: ${this.brand}, Giá: ${this.price}`;
+        }
+    }
+
+    let phones = [];
+
+    function addPhone() {
+        const id = document.getElementById('idInput').value;
+        const name = document.getElementById('nameInput').value;
+        const brand = document.getElementById('brandInput').value;
+        const price = parseInt(document.getElementById('priceInput').value);
+
+        let phone = new Phone(id, name, brand, price);
+        phones.push(phone);
+
+        displayPhones();
+    }
+
+    function displayPhones() {
+        phones.sort((a, b) => a.getName().localeCompare(b.getName()));
+
+        let display = '';
+        for (let phone of phones) {
+            display += '<p>' + phone.toString() + '</p>'
+        }
+
+        document.getElementById('phones').innerHTML = display;
+    }
+</script>
+</html>
